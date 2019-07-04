@@ -17,18 +17,3 @@
 .center-align {
     text-align: center;
 }
-
-.inp {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #03a8f45e;
-    padding: 5px 15px;
-    outline: none;
-}
-
-  [placeholder]:focus::-webkit-input-placeholder {
-    transition: text-indent 0.4s 0.4s ease; 
-    text-indent: -100%;
-    opacity: 1;
-}
