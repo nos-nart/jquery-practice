@@ -1,0 +1,43 @@
+.app {
+    font-family: 'Inconsolata', monospace;
+}
+
+.grid {
+    display: grid;
+}
+
+.container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding-top: 4rem;
+}
+
+.header {
+    grid-template-columns: auto min-content;
+}
+
+.game-board {
+    width: min-content;
+    margin: 0 auto;
+    padding: 4rem 0;
+    grid-gap: .05em;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.cell {
+    width: 2em;
+    height: 2em;
+    border: 1px solid rgb(27, 148, 255);
+    border-radius: 3px;
+}
+
+.cell:hover {
+    background: rgba(0, 0, 0, 0.135);
+}
+
+.game-options {
+    grid-template-columns: auto min-content;
+    grid-gap: 1rem;
+    align-items: center;
+}
