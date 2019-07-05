@@ -8,6 +8,7 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <!-- Style css -->
     <link rel="stylesheet" href="./styles/main.css">
     <!-- Reset css -->
@@ -25,18 +26,24 @@
                         <div>
                             <p class="text-bold">How many grid do you wanna have?</p>
                             <form class="options__item">
-                                <input type="checkbox" name="width" value="7" checked>7
-                                <input type="checkbox" name="width" value="10">10
+                                <input type="checkbox" name="width" value="10" checked>10
+                                <input type="checkbox" name="width" value="15">15
                             </form>
                         </div>
-                        <div class="message">
-                            <span></span>
+                        <div>
+                            <button class="btn start-game">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <p class="small-text">Click here to start</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="game-board grid">
-
+            <div class="game-play grid">
+                <div class="game-board grid"></div>
+                <div class="message">
+                    <span></span>
+                </div>
             </div>
         </div>
     </div>

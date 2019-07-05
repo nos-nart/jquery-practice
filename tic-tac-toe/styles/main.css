@@ -19,23 +19,24 @@
 .game-board {
     width: min-content;
     margin: 0 auto;
-    padding: 4rem 0;
+    border-radius: 3px;
     grid-gap: .05em;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.265);
 }
 
 .cell {
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.741);
+    width: 3em;
+    height: 3em;
     border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.707);
     cursor: pointer;
-    font-weight: 600;
-    justify-content: center;
-    align-content: center;
+    background: #ffffff;
+    color: #000;
+    padding: 0;
 }
 
 .cell:hover {
-    background: #039be5;
+    background: #8e24aa;
 }
 
 .game-options {
@@ -46,5 +47,13 @@
 }
 
 .message {
-    justify-self: end;
+    justify-self: start;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.game-play {
+    grid-template-columns: min-content auto;
+    margin-top: 50px;
+    grid-gap: 2em;
 }

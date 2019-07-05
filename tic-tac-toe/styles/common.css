@@ -17,3 +17,18 @@
 .center-align {
     text-align: center;
 }
+
+.btn {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #ffffff;
+    background:rgb(1, 128, 255);
+    cursor: pointer;
+}
+
+.small-text {
+    padding-top: 5px;
+    font-size: smaller;
+}
