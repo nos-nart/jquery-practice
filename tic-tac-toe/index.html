@@ -8,6 +8,7 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="./styles/main.css">
     <!-- Reset css -->
     <link rel="stylesheet" href="./styles/reset.css">
@@ -21,12 +22,20 @@
                 <div class="grid grid-row">
                     <p class="center-align text-bold">TIC-TAC-TOE</p>
                     <div class="game-options grid">
-                        <div>
-                            <p class="text-bold">How many grid do you wanna have?</p>
-                            <form class="options__item">
-                                <input type="checkbox" name="width" value="7" checked>7
-                                <input type="checkbox" name="width" value="10">10
-                            </form>
+                        <div class="grid inner_game-options">
+                            <div>
+                                <p class="text-bold">How many grid do you wanna have?</p>
+                                <form class="options__item">
+                                    <input type="checkbox" name="width" value="10" checked>10
+                                    <input type="checkbox" name="width" value="15">15
+                                </form>
+                            </div>
+                            <div>
+                                <button class="btn start-game">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <p class="small-text">Click here to start</p>
+                            </div>
                         </div>
                         <div class="message">
                             <span></span>
