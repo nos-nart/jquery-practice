@@ -30,7 +30,7 @@ $(function() {
         // Get initial width board
         ELEMENT.$input.each( function() {
             if ($(this).prop('checked')) {
-                drawGame($(this).val())
+                drawGame($(this).val());
             }
         });
     }
@@ -41,6 +41,7 @@ $(function() {
         ELEMENT.$btnStart.on('click', function() {
             ELEMENT.$input.each( function() {
                 $(this).attr('disabled', true);
+                changeMessage(MSSG.X_TURN);
             })
         })
     }
@@ -109,8 +110,15 @@ $(function() {
     function checkWin(moves, x, y) {
         let x_horizontal = moves.filter(move => move.x === x && move.player === 'x');
         let y_horizontal = moves.filter(move => move.x === x && move.player === 'o');
-        if ((x_horizontal.length > 4 || y_horizontal.length > 4) && y_max - y_min < 5) {
-            isWin = true;
+        if (x_horizontal.length > 4 || y_horizontal.length > 4) {
+            if (x_horizontal.length > 5 || y_horizontal.length > 5) {
+                isWin = true;
+            }
+            if (y_max - y_min < 5) {
+                isWin = true;
+            }
+        } else {
+            isWin = false;
         }
         return isWin;
     }
