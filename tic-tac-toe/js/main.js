@@ -19,7 +19,13 @@ $(function() {
         x_max,
         x_min,
         y_max,
-        y_min;
+        y_min,
+        x_horizontal,
+        o_horizontal,
+        x_vertical,
+        o_vertical,
+        x_diagonal,
+        o_diagonal;
 
     function changeMessage(mssg) {
         ELEMENT.$message.text(mssg)
@@ -64,6 +70,10 @@ $(function() {
         })
     }
 
+    function drawWinPLayer(x, y) {
+
+    }
+
     function playGame() {
         $(document).on('click', '.cell', function() {
             $('.cell').css('background', '#ffffff');
@@ -78,17 +88,21 @@ $(function() {
                 $self.html(`<span>❌</span>`);
                 changeMessage(MSSG.O_TURN);
             }
+
             move = {
                 player: x_turn ? 'o' : 'x',
                 x: $self.data('coordinate').split(',')[0],
                 y: $self.data('coordinate').split(',')[1],
+                sum: Number(($self.data('coordinate').split(',')[0])) + Number($self.data('coordinate').split(',')[1])
             }
             arrMovement.push(move);
+
             y_max = Math.max.apply(Math, arrMovement.map(function(it){ return it.y}));
             y_min = Math.min.apply(Math, arrMovement.map(function(it){ return it.y}));
             x_max = Math.max.apply(Math, arrMovement.map(function(it){ return it.x}));
             x_min = Math.min.apply(Math, arrMovement.map(function(it){ return it.x}));
             isWin = checkWin(arrMovement, move.x, move.y);
+
             if (isWin) {
                 changeMessage(`${move.player} ${MSSG.WIN}`);
                 $('.cell').prop('disabled', true)
@@ -98,7 +112,7 @@ $(function() {
 
     function drawGame(width) {
         ELEMENT.$gameBoard.empty();
-        ELEMENT.$gameBoard.css( "grid-template-columns", `repeat(${width}, 1fr)` );
+        ELEMENT.$gameBoard.css("grid-template-columns", `repeat(${width}, 1fr)`);
         for (let i = 0; i < width; i++) {
             for(let j = 0; j < width; j++)
             ELEMENT.$gameBoard.append(
@@ -107,16 +121,42 @@ $(function() {
         }
     }
 
+    function isConsecutiveDiagonal(arr, sum, length) {
+        let temp = arr.reduce((res, ele) => {
+            return Number(ele.x) + Number(ele.y) === sum ? [...res, ele] : [...res];
+        }, []);
+        let x_temp_max = Math.max.apply(Math, temp.map(function(t) { return t.x }));
+        let x_temp_min = Math.min.apply(Math, temp.map(function(t){ return t.x }));
+        return Object.is(temp.length, length) && x_temp_max - x_temp_min < 5;
+    }
+
     function checkWin(moves, x, y) {
-        let x_horizontal = moves.filter(move => move.x === x && move.player === 'x');
-        let y_horizontal = moves.filter(move => move.x === x && move.player === 'o');
-        if (x_horizontal.length > 4 || y_horizontal.length > 4) {
-            if (x_horizontal.length > 5 || y_horizontal.length > 5) {
+        let sum = moves[0].sum;
+        x_horizontal = moves.filter(move => Object.is(move.x, x) && Object.is(move.player, 'x'));
+        o_horizontal = moves.filter(move => Object.is(move.x, x) && Object.is(move.player, 'o'));
+        x_vertical = moves.filter(move => Object.is(move.y, y) && Object.is(move.player, 'x'));
+        o_vertical = moves.filter(move => move.y === y && move.player === 'o');
+        let x_diagonal_arr = moves.filter(move => Object.is(move.player, 'x'));
+        let o_diagonal_arr = moves.filter(move => Object.is(move.player, 'o'));
+        x_diagonal = isConsecutiveDiagonal(x_diagonal_arr, sum, x_diagonal_arr.length);
+        o_diagonal = isConsecutiveDiagonal(o_diagonal_arr, sum, o_diagonal_arr.length);
+
+        if (x_horizontal.length > 4 || o_horizontal.length > 4) {
+            if (x_horizontal.length > 5 || o_horizontal.length > 5) {
                 isWin = true;
             }
             if (y_max - y_min < 5) {
                 isWin = true;
             }
+        } else if (x_vertical.length > 4 || o_vertical.length > 4) {
+            if (x_vertical.length > 5 || o_vertical.length > 5) {
+                isWin = true;
+            }
+            if (x_max - x_min < 5) {
+                isWin = true;
+            }
+        } else if (x_diagonal_arr.length > 4 && x_diagonal || o_diagonal_arr.length > 4 && o_diagonal) {
+            isWin = true;
         } else {
             isWin = false;
         }
