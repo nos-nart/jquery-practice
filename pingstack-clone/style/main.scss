@@ -1,0 +1,29 @@
+.navigation {
+    grid-template-columns: 150px auto;
+    line-height: 4rem;
+}
+
+.menu-bar {
+    grid-template-columns: repeat(3, auto);
+    margin: 0;
+}
+
+.menu-bar > li {
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.banner {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.banner-left {
+    position: relative;
+}
+
+.inner__banner-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

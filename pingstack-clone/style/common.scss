@@ -1,0 +1,130 @@
+@import './variable.scss';
+
+.grid {
+    display: grid;
+}
+
+.container {
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: $btnColor;
+    padding: 10px 15px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.font-thin {
+    font-weight: 200;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-sm {
+    font-size: .875rem;
+}
+
+.text-base {
+    font-size: 1rem;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-grey {
+    color: $textGrey;
+}
+
+.text-black {
+    color: #000;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.text-5xl {
+    font-size: 3rem;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.list-none {
+    list-style-type: none;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.gap-1 {
+    grid-gap: 1rem;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.content-center {
+    align-content: center;
+}
+
+.self-center {
+    align-self: center;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.py-8 {
+    padding: 2rem 0;
+}
+
+.pt-4 {
+    padding-top: 1rem;
+}
+
+.pt-8 {
+    padding-top: 2rem;
+}
+
+.py-32 {
+    padding: 8rem 0;
+}
+
+.my-2 {
+    margin: .5rem 0;
+}
+
+.italic {
+    font-style: italic;
+}
