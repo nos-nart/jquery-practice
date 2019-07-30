@@ -41,6 +41,10 @@
     font-weight: 700;
 }
 
+.font-center {
+    text-align: center;
+}
+
 .text-sm {
     font-size: .75rem;
 }
@@ -85,8 +89,20 @@
     justify-content: end;
 }
 
+.justify-items-center {
+    justify-items: center;
+}
+
 .gap-1 {
     grid-gap: 1rem;
+}
+
+.gap-2 {
+    grid-gap: 2rem;
+}
+
+.items-start {
+    align-items: start;
 }
 
 .items-center {
@@ -107,6 +123,10 @@
 
 .w-full {
     width: 100%;
+}
+
+.py-2 {
+    padding: .5rem 0;
 }
 
 .py-8 {
@@ -143,4 +163,8 @@
 
 .lh-6 {
     line-height: 2.5rem;
+}
+
+.line {
+    color: $clr-1;
 }

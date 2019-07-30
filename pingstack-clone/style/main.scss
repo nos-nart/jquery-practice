@@ -38,3 +38,8 @@
 .underline-pink {
     @include underline-color($clr-2);
 }
+
+.inner__benefit {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
