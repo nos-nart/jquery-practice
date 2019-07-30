@@ -1,3 +1,3 @@
-import './style/normalize.scss'
-import './style/common.scss'
+import './style/_normalize.scss'
+import './style/_common.scss'
 import './style/main.scss'

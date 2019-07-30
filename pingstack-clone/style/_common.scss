@@ -1,4 +1,5 @@
-@import './variable.scss';
+@import './_variable.scss';
+@import './mixin';
 
 .grid {
     display: grid;
@@ -12,9 +13,12 @@
 .btn {
     outline: none;
     border: none;
-    border-radius: 5px;
-    background: $btnColor;
+    @include border-radius(5px);
+    background: $primaryClr;
     padding: 10px 15px;
+    &:hover {
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.367);
+    }
 }
 
 .uppercase {
@@ -38,7 +42,7 @@
 }
 
 .text-sm {
-    font-size: .875rem;
+    font-size: .75rem;
 }
 
 .text-base {
@@ -50,7 +54,7 @@
 }
 
 .text-grey {
-    color: $textGrey;
+    color: $clr-1;
 }
 
 .text-black {
@@ -109,12 +113,12 @@
     padding: 2rem 0;
 }
 
-.pt-4 {
-    padding-top: 1rem;
+.pt-2 {
+    padding-top: .5rem;
 }
 
-.pt-8 {
-    padding-top: 2rem;
+.pt-4 {
+    padding-top: 1rem;
 }
 
 .py-32 {
@@ -125,6 +129,18 @@
     margin: .5rem 0;
 }
 
+.mx-6 {
+    margin: 0 1.5rem;
+}
+
 .italic {
     font-style: italic;
+}
+
+.lp-1 {
+    letter-spacing: .25px;
+}
+
+.lh-6 {
+    line-height: 2.5rem;
 }

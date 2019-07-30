@@ -1,3 +1,6 @@
+@import './mixin';
+@import './variable';
+
 .navigation {
     grid-template-columns: 150px auto;
     line-height: 4rem;
@@ -26,4 +29,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.underline-green {
+    @include underline-color($clr-3);
+}
+
+.underline-pink {
+    @include underline-color($clr-2);
 }
