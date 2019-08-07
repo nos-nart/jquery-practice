@@ -39,6 +39,14 @@ $(function () {
         }
       }
 
+      xhr.onprogress = function(event) {
+        if (event.lengthComputable) {
+          console.log('render progress bar')
+        } else {
+          console.log(`Received ${event.loaded} bytes`); // no Content-Length
+        }
+      };
+
       xhr.onerror = function () {
         reject(new Error('Something went wrong'))
       }
@@ -46,16 +54,15 @@ $(function () {
   }
 
   const  onUrbanSearch = (keyword) => {
+    $ELEMENTS.RES.empty()
     search(`${URL_URBAN}${keyword}`)
       .then(function (response) {
         let res = JSON.parse(response).list
         console.log("TCL: onUrbanSearch -> res", res[0])
         res.map(item => {
           $ELEMENTS.RES.append(
-            `<div class="shadow-lg rounded-lg p-4">
+            `<div class="shadow-md rounded-lg p-4">
                 <span class="font-bold text-2xl text-pink-600">${item.word}</span>
-                <a class="play-sound" href=${item.sound_urls[0]}><span>🔊</span></a>
-
                 <p><span class="font-bold">Definition:</span> ${item.definition.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>')}</p>
                 <div><span class="font-bold">Example:</span><br>
                     <p class="italic">${item.example.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>')}</p>
@@ -78,9 +85,5 @@ $(function () {
     event.preventDefault()
     let urban_keyword = $(this).find('[data-keyword=urban]').val()
     onUrbanSearch(urban_keyword)
-    $(document).on('click', '.play-sound', function() {
-      var hrefsound = new Audio($(this).attr('href'))
-      hrefsound.play()
-    })
   })
 });
