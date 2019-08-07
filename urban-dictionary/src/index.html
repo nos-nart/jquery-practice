@@ -11,24 +11,24 @@
 <body>
   <div class="container m-auto">
     <div class="main py-16 flex flex-row">
-      <div class="w-1/3 p-8 shadow-md rounded-lg">
+      <div class="w-1/3 p-8 shadow-md rounded-lg min-height">
         <div class="mb-4">
           <p class="font-bold pb-2 text-teal-500">Urban dictionary</p>
-          <div class="flex flex-row">
-            <input type="text" placeholder="What are you looking for?🙈" class="outline-none px-4 text-sm w-full" id="urban">
-            <button class="bg-purple-600 rounded text-sm py-1 px-4 outline-none urban-search">👀</button>
-          </div>
+          <form class="flex flex-row" id="urban">
+            <input type="text" placeholder="Type word or pharse🙈" class="outline-none px-4 text-sm w-full" data-keyword="urban">
+            <button type="submit" class="bg-purple-600 rounded text-sm py-1 px-4 outline-none">👀</button>
+          </form>
         </div>
         <div class="mb-4">
           <p class="font-bold pb-2 text-teal-500">Oxford dictionary</p>
           <div class="flex flex-row">
-            <input type="text" placeholder="What are you looking for?🙉" class="outline-none px-4 text-sm w-full">
+            <input type="text" placeholder="Search English🙉" class="outline-none px-4 text-sm w-full">
             <button class="bg-purple-600 rounded text-sm py-1 px-4 outline-none">🔍</button>
           </div>
         </div>
       </div>
-      <div class="w-2/3 p-8 shadow-md rounded-lg ml-4">
-        <p>Result</p>
+      <div class="w-2/3 p-4 shadow-md rounded-lg ml-4">
+        <div id="result"></div>
       </div>
     </div>
   </div>
