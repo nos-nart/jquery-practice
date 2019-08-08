@@ -13,8 +13,12 @@ $(function () {
 
   const $ELEMENTS = {
     URBAN: $('#urban'),
-    RES: $('#result')
+    RES: $('#result'),
+    PROGRESS_BAR: $('#progress-bar')
   }
+  
+
+  console.log($ELEMENTS.PROGRESS_BAR);
 
   const formatDate = date => {
     let res = new Date(date).toLocaleDateString('en-GB', {
@@ -31,23 +35,21 @@ $(function () {
       let xhr = new XMLHttpRequest();
       xhr.open(method.GET, url);
       xhr.send();
-      xhr.onload = function () {
+      xhr.onload = () => {
         if (Object.is(xhr.status, 200)) {
           resolve(xhr.response)
         } else {
           reject(Error(req.statusText))
         }
       }
-
-      xhr.onprogress = function(event) {
+      
+      xhr.onprogress = event => {
         if (event.lengthComputable) {
-          console.log('render progress bar')
-        } else {
-          console.log(`Received ${event.loaded} bytes`); // no Content-Length
+          $ELEMENTS.PROGRESS_BAR.css('width', (event.loaded / event.total) * 100)
         }
-      };
+      }
 
-      xhr.onerror = function () {
+      xhr.onerror = () => {
         reject(new Error('Something went wrong'))
       }
     })
@@ -56,28 +58,32 @@ $(function () {
   const  onUrbanSearch = (keyword) => {
     $ELEMENTS.RES.empty()
     search(`${URL_URBAN}${keyword}`)
-      .then(function (response) {
+      .then(response => {
         let res = JSON.parse(response).list
-        console.log("TCL: onUrbanSearch -> res", res[0])
-        res.map(item => {
-          $ELEMENTS.RES.append(
-            `<div class="shadow-md rounded-lg p-4">
-                <span class="font-bold text-2xl text-pink-600">${item.word}</span>
-                <p><span class="font-bold">Definition:</span> ${item.definition.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>')}</p>
-                <div><span class="font-bold">Example:</span><br>
-                    <p class="italic">${item.example.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>')}</p>
-                </div>
-                <p class="font-bold">by <span class="text-teal-400"> ${item.author}</span><span> ${formatDate(item.written_on)}</span></p>
-                <div>
-                  <span>👍 ${item.thumbs_up} </span><span>👎 ${item.thumbs_down}</span>
-                </div>
-              </div>`
-          )
-        })
+        console.log("TCL: onUrbanSearch -> res", res)
+        if (res.length !== 0) {
+          res.map(item => {
+            $ELEMENTS.RES.append(generateResult(item))
+          })
+        } else {
+          $ELEMENTS.RES.append(`<p class="font-bold text-2xl">Sorry we couldn't find: <span class="text-red-500">${keyword} 🎌</span>`)
+        }
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
       })
+  }
+
+  const generateResult = value => {
+    var html = ''
+    html += '<div class="shadow-md rounded-lg p-4">'
+    html += '<p class="font-bold text-2xl text-pink-600">' + value.word + '</p>';
+    html += '<p>' + '<span class="font-bold">' + 'Definition:' + '</span>' + value.definition.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>') + '</p>'
+    html += '<p>' + '<span class="font-bold">' + 'Example:' + '</span>' + value.example.replace(/[\r\n]+/g, '<br>').replace(/\[([^\]]+)\]/g, '<span class="text-blue-400 font-bold">$1</span>') + '</p>'
+    html += '<p class="font-bold">' + 'by ' + '<span class="text-teal-400"> ' + value.author + '</span>' + ' <span> ' + formatDate(value.written_on) + '</span>' + '</p>'
+    html += '<div>' + '<span>' + '👍 ' +  value.thumbs_up + '</span>' + '<span>' + ' 👎 ' +  value.thumbs_down + '</span>'
+    html += '</div>'
+    return html
   }
 
 
