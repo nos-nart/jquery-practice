@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AAA</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .demo-content {
+            position: absolute;
+            width: 240px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .square {
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+            background: purple;
+        }
+
+        .motion-path {
+            position: relative;
+            margin: auto;
+        }
+
+        .follow-path {
+            position: absolute;
+            top: -113px;
+            left: -9px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="demo-content motion-path-demo">
+            <div class="motion-path">
+                <div class="small square el follow-path"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="238.099" height="312.92" viewBox="0 0 238.099 312.92">
+                    <path id="Path_1" data-name="Path 1" d="M0,105.495S270.174,218.48,234.067,314.836,0,417.453,0,417.453" transform="translate(0.193 -105.033)" fill="none" stroke="#707070" stroke-width="1"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
