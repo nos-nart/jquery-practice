@@ -1,0 +1,15 @@
+{
+  "name": "charming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "charming": "^3.0.1",
+    "jquery": "^3.4.1",
+    "parcel-bundler": "^1.12.3"
+  }
+}

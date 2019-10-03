@@ -1,0 +1,15 @@
+{
+  "name": "splitting",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "parcel-bundler": "^1.12.3",
+    "splitting": "^1.0.6",
+    "style.css": "^1.0.0"
+  }
+}
