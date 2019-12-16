@@ -10,6 +10,7 @@
     "jquery": "^3.4.1",
     "parcel-bundler": "^1.12.3",
     "splitting": "^1.0.6",
-    "style.css": "^1.0.0"
+    "style.css": "^1.0.0",
+    "tailwindcss-animatecss": "^0.2.3"
   }
 }

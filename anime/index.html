@@ -20,27 +20,38 @@
 
         .demo-content {
             position: absolute;
-            width: 240px;
+            width: 510px;
             top: 50%;
             transform: translateY(-50%);
         }
 
         .square {
-            width: 18px;
-            height: 18px;
+            width: 28px;
+            height: 28px;
             pointer-events: none;
             background: purple;
+            border-radius: 999px;
         }
 
         .motion-path {
             position: relative;
             margin: auto;
+            /* The image used */
+            background-image: url("./images/xxx.svg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .follow-path {
             position: absolute;
-            top: -113px;
-            left: -9px;
+            top: -345px;
+            left: -477px;
         }
     </style>
 </head>
@@ -50,9 +61,12 @@
         <div class="demo-content motion-path-demo">
             <div class="motion-path">
                 <div class="small square el follow-path"></div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="238.099" height="312.92" viewBox="0 0 238.099 312.92">
-                    <path id="Path_1" data-name="Path 1" d="M0,105.495S270.174,218.48,234.067,314.836,0,417.453,0,417.453" transform="translate(0.193 -105.033)" fill="none" stroke="#707070" stroke-width="1"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="508.611" height="421.212" viewBox="0 0 508.611 421.212">
+                    <path id="Path_211" data-name="Path 211"
+                        d="M815.28,397.776s132.388-90.99,153.829-61.655S898.565,504.679,750.63,612.933s-267.569,159.523-283.4,126.683C453.37,710.881,535.977,629.741,561.851,605.4"
+                        transform="translate(-464.662 -329.242)" fill="none" stroke="#4285f4" stroke-width="2" />
                 </svg>
+
             </div>
         </div>
     </div>

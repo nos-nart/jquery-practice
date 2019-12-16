@@ -8,6 +8,7 @@ anime({
   translateY: path('y'),
   rotate: path('angle'),
   easing: 'linear',
-  duration: 5000,
-  loop: true
+  duration: 10000,
+  loop: true,
+  // delay: 3000
 });
