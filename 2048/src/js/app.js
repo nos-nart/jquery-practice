@@ -1,0 +1,81 @@
+import jquery from 'jquery';
+import storage from 'local-storage-fallback';
+window.$ = window.jquery = jquery
+
+$(function () {
+    const $ELEMENT = {
+        best: $('.best'),
+        score: $('.score'),
+        newGame: $('.new-game'),
+        cells: $('.cell')
+    };
+    
+    const randomValues = new Array(10).fill(2).map((ele, index) => index < 2 ? ele + 2 : ele);
+    // var item = items[Math.floor(Math.random()*items.length)];
+    
+
+    $ELEMENT.newGame.click(function() {
+        initialGame();
+    })
+
+    function getBestScore() {
+        return storage.getItem('best') || 0;
+    };
+    
+    function paintColor() {
+        $.each($ELEMENT.cells, function(key, val) {
+            let $this = $(val);
+            switch($this.data('value')) {
+                case 0 :{
+                    $this.addClass('bg-0');
+                    break;
+                }
+                case 2: {
+                    $this.addClass('bg-2');
+                    break;
+                }
+                case 4: {
+                    $this.addClass('bg-4');
+                    break;
+                }
+                case 8: {
+                    $this.addClass('bg-8');
+                    break;
+                }
+                case 16: {
+                    $this.addClass('bg-16');
+                    break;
+                }
+                case 32: {
+                    $this.addClass('bg-32');
+                    break;
+                }
+                default: return '';
+            }
+        });
+    };
+
+    function initialGame() {
+        let best = getBestScore();
+        $ELEMENT.best.text(best);
+
+        let startValue = new Array(16).fill(0).map((_, index) => index === 0 || index === 1 ? randomValues[Math.floor(Math.random()*randomValues.length)] : 0).sort(() => Math.random() - 0.5);
+        console.log("TCL: initialGame -> startValue", startValue)
+        $.each($ELEMENT.cells, function(key, val) {
+            let $this = $(val);
+            startValue[key] === 0 ? $this.text('') : $this.text(startValue[key]);
+            $this.attr({'data-value': startValue[key]});
+        });
+        paintColor();
+    };
+
+    function move() {
+
+    };
+
+    function runGame() {
+        initialGame();
+    };
+
+    runGame();
+});

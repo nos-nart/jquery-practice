@@ -1,4 +1,7 @@
 $(function() {
+    //TODO: add timing to players turn
+    // 
+
     console.log('%c%s', 'color: rgb(255, 1, 1); font-size: 36px', 'Dừng lại!');
     const $ELEMENT = {
         gameBoard: $('.game-board'),

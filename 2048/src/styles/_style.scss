@@ -1,0 +1,53 @@
+[placeholder]:focus::-webkit-input-placeholder {
+    transition: text-indent 0.4s 0.4s ease;
+    text-indent: -100%;
+    opacity: 1;
+};
+
+.cell {
+    @apply w-16 h-16 m-1 rounded flex items-center justify-center overflow-hidden text-brown-600 font-bold;
+};
+
+.new-game {
+    @apply rounded bg-brown-500 text-white px-4 py-2 outline-none border-none font-semibold;
+};
+
+.bg-0 {
+    @apply bg-brown-100 #{!important};
+};
+
+.bg-2 {
+    @apply bg-brown-200 #{!important};
+};
+
+.bg-4 {
+    @apply bg-brown-300 #{!important};
+};
+
+.bg-8 {
+    @apply bg-orage-300 #{!important};
+};
+
+.bg-16 {
+    @apply bg-orage-400 #{!important};
+};
+
+.bg-32 {
+    @apply bg-orage-500 #{!important};
+};
+
+.bg-64 {
+    @apply bg-red-500 #{!important};
+};
+
+.bg-128 {
+    @apply bg-yellow-400 #{!important};
+};
+
+.bg-256 {
+    @apply bg-yellow-500 #{!important};
+};
+
+.bg-512 {
+    @apply bg-yellow-600 #{!important};
+};
