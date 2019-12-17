@@ -12,17 +12,18 @@ $(function () {
     
     const randomValues = new Array(10).fill(2).map((ele, index) => index < 2 ? ele + 2 : ele);
     // var item = items[Math.floor(Math.random()*items.length)];
-    
 
-    $ELEMENT.newGame.click(function() {
+
+    $(document).on('click', '.new-game', function() {
         initialGame();
-    })
+    });
 
     function getBestScore() {
-        return storage.getItem('best') || 0;
+        return storage.getItem('best') || 1;
     };
     
     function paintColor() {
+        console.log('paint color')
         $.each($ELEMENT.cells, function(key, val) {
             let $this = $(val);
             switch($this.data('value')) {
@@ -60,8 +61,8 @@ $(function () {
         $ELEMENT.best.text(best);
 
         let startValue = new Array(16).fill(0).map((_, index) => index === 0 || index === 1 ? randomValues[Math.floor(Math.random()*randomValues.length)] : 0).sort(() => Math.random() - 0.5);
-        console.log("TCL: initialGame -> startValue", startValue)
         $.each($ELEMENT.cells, function(key, val) {
+            console.log('assign value')
             let $this = $(val);
             startValue[key] === 0 ? $this.text('') : $this.text(startValue[key]);
             $this.attr({'data-value': startValue[key]});
@@ -70,6 +71,14 @@ $(function () {
     };
 
     function move() {
+
+    };
+
+    function calculateScore() {
+
+    };
+
+    function checkEndGame() {
 
     };
 
