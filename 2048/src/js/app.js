@@ -13,6 +13,12 @@ $(function () {
     const randomValues = new Array(10).fill(2).map((ele, index) => index < 2 ? ele + 2 : ele);
     // var item = items[Math.floor(Math.random()*items.length)];
 
+    // $.each($ELEMENT.cells, function(key, val) {
+    //     $(val).removeClass(function(_, className) {
+    //         console.log(className)
+    //         // return (className.match(/(bg-[^0])/g)).join('');
+    //     })
+    // });
 
     $(document).on('click', '.new-game', function() {
         initialGame();
