@@ -9,6 +9,13 @@ $(function () {
         newGame: $('.new-game'),
         cells: $('.cell')
     };
+
+    const KEYCODE = {
+        left: 37,
+        up: 38,
+        right: 39,
+        down: 40
+    };
     
     const randomValues = new Array(10).fill(2).map((ele, index) => index < 2 ? ele + 2 : ele);
     // var item = items[Math.floor(Math.random()*items.length)];
@@ -27,10 +34,6 @@ $(function () {
         $.each($ELEMENT.cells, function(key, val) {
             let $this = $(val);
             switch($this.data('value')) {
-                case 0 :{
-                    $this.addClass('bg-0');
-                    break;
-                }
                 case 2: {
                     $this.addClass('bg-2');
                     break;
@@ -71,8 +74,20 @@ $(function () {
     };
 
     function move() {
-
+        $(document).keyup(function(e) {
+            switch(e.keyCode) {
+                case KEYCODE.down: {
+                    down();
+                    break;
+                }
+                default: return null;
+            }
+        })
     };
+
+    function down() {
+
+    }
 
     function calculateScore() {
 
@@ -84,6 +99,7 @@ $(function () {
 
     function runGame() {
         initialGame();
+        move();
     };
 
     runGame();

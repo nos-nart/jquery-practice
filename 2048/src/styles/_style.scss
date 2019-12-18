@@ -5,7 +5,7 @@
 };
 
 .cell {
-    @apply w-16 h-16 m-1 rounded flex items-center justify-center overflow-hidden text-brown-600 font-bold;
+    @apply w-16 h-16 m-1 rounded flex items-center justify-center overflow-hidden text-brown-600 font-bold bg-brown-100;
 };
 
 .new-game {
