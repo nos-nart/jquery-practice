@@ -31,6 +31,7 @@ $(function () {
     
     function paintColor() {
         console.log('paint color')
+        console.log("TCL: paintColor -> $ELEMENT.cells", $ELEMENT.cells)
         $.each($ELEMENT.cells, function(key, val) {
             let $this = $(val);
             switch($this.data('value')) {
@@ -64,11 +65,10 @@ $(function () {
         $ELEMENT.best.text(best);
 
         let startValue = new Array(16).fill(0).map((_, index) => index === 0 || index === 1 ? randomValues[Math.floor(Math.random()*randomValues.length)] : 0).sort(() => Math.random() - 0.5);
-        $.each($ELEMENT.cells, function(key, val) {
-            console.log('assign value')
-            let $this = $(val);
-            startValue[key] === 0 ? $this.text('') : $this.text(startValue[key]);
-            $this.attr({'data-value': startValue[key]});
+        $ELEMENT.cells.each(function(index, e) {
+            let $this = $(e);
+            startValue[index] === 0 ? $this.text('') : $this.text(startValue[index]);
+            $this.attr({'data-value': startValue[index]});
         });
         paintColor();
     };
@@ -86,7 +86,9 @@ $(function () {
     };
 
     function down() {
-
+        $.each($ELEMENT.cells, function(key, val) {
+            console.log("TCL: down -> val", val)
+        })
     }
 
     function calculateScore() {
