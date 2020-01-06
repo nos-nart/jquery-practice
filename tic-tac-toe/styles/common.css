@@ -18,6 +18,14 @@
     text-align: center;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
 .btn {
     outline: none;
     border: none;
@@ -31,4 +39,8 @@
 .small-text {
     padding-top: 5px;
     font-size: smaller;
+}
+
+.m-auto {
+    margin: 0 auto;
 }

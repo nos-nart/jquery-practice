@@ -2,12 +2,8 @@
     font-family: 'Inconsolata', monospace;
 }
 
-.grid {
-    display: grid;
-}
-
 .container {
-    max-width: 80vw;
+    max-width: 800px;
     margin: 0 auto;
     padding-top: 2rem;
 }
@@ -35,7 +31,7 @@
 }
 
 .cell:hover {
-    background: #24abff;
+    background: #0eac4a;
 }
 
 .game-options {
@@ -52,12 +48,6 @@
     padding: 2rem 0;
 }
 
-.game-play {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .setting-bar {
     display: flex;
     justify-content: space-between;
@@ -70,5 +60,5 @@
 }
 
 .setting__icon:hover {
-    fill: #096dd9;
+    fill: #0a9745;
 }
