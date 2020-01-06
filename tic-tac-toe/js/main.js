@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     //TODO: add timing to players turn
     //
     console.log('%c%s', 'color: rgb(255, 1, 1); font-size: 36px', 'Dừng lại!');
@@ -44,7 +44,7 @@ $(function() {
     function startGame() {
         arrMovement = [];
         isWin = false;
-        $ELEMENT.btnStart.on('click', function() {
+        $ELEMENT.btnStart.on('click', function () {
             isStart = true;
             $('input[name="width"]').attr('disabled', true);
             drawGame(getWidth());
@@ -76,7 +76,7 @@ $(function() {
     }
 
     function rePlay() {
-        $ELEMENT.btnReplay.on('click', function() {
+        $ELEMENT.btnReplay.on('click', function () {
             drawGame(getWidth());
             !Object.is(isWin, 'x') ? changeMessage(MSSG.Y_TURN) : changeMessage(MSSG.X_TURN)
         });
@@ -88,7 +88,7 @@ $(function() {
 
     function playGame() {
         let $that = null;
-        $(document).on('click', '.cell', function() {
+        $(document).on('click', '.cell', function () {
             if ($that) $that.css('background', '#fff');
             x_turn = !x_turn;
             let $self = $(this);
@@ -97,11 +97,15 @@ $(function() {
             if (x_turn) {
                 changeHTML($self, `<span>⚫️</span>`);
                 changeMessage(MSSG.X_TURN);
-                arrMovement.push({ x: $self.data('index') });
+                arrMovement.push({
+                    x: $self.data('index')
+                });
             } else {
                 changeHTML($self, `<span>✖️</span>`);
                 changeMessage(MSSG.O_TURN);
-                arrMovement.push({ y: $self.data('index') });
+                arrMovement.push({
+                    y: $self.data('index')
+                });
             }
             $that = $(this);
             checkWin(arrMovement);
