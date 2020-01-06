@@ -9,6 +9,13 @@ $(function () {
         newGame: $('.new-game'),
         cells: $('.cell')
     };
+
+    const KEYCODE = {
+        left: 37,
+        up: 38,
+        right: 39,
+        down: 40
+    };
     
     const randomValues = new Array(10).fill(2).map((ele, index) => index < 2 ? ele + 2 : ele);
     // var item = items[Math.floor(Math.random()*items.length)];
@@ -30,13 +37,10 @@ $(function () {
     
     function paintColor() {
         console.log('paint color')
+        console.log("TCL: paintColor -> $ELEMENT.cells", $ELEMENT.cells)
         $.each($ELEMENT.cells, function(key, val) {
             let $this = $(val);
             switch($this.data('value')) {
-                case 0 :{
-                    $this.addClass('bg-0');
-                    break;
-                }
                 case 2: {
                     $this.addClass('bg-2');
                     break;
@@ -67,18 +71,31 @@ $(function () {
         $ELEMENT.best.text(best);
 
         let startValue = new Array(16).fill(0).map((_, index) => index === 0 || index === 1 ? randomValues[Math.floor(Math.random()*randomValues.length)] : 0).sort(() => Math.random() - 0.5);
-        $.each($ELEMENT.cells, function(key, val) {
-            console.log('assign value')
-            let $this = $(val);
-            startValue[key] === 0 ? $this.text('') : $this.text(startValue[key]);
-            $this.attr({'data-value': startValue[key]});
+        $ELEMENT.cells.each(function(index, e) {
+            let $this = $(e);
+            startValue[index] === 0 ? $this.text('') : $this.text(startValue[index]);
+            $this.attr({'data-value': startValue[index]});
         });
         paintColor();
     };
 
     function move() {
-
+        $(document).keyup(function(e) {
+            switch(e.keyCode) {
+                case KEYCODE.down: {
+                    down();
+                    break;
+                }
+                default: return null;
+            }
+        })
     };
+
+    function down() {
+        $.each($ELEMENT.cells, function(key, val) {
+            console.log("TCL: down -> val", val)
+        })
+    }
 
     function calculateScore() {
 
@@ -90,6 +107,7 @@ $(function () {
 
     function runGame() {
         initialGame();
+        move();
     };
 
     runGame();

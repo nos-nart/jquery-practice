@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>z-dog</title>
+  <link rel="stylesheet" href="./reset.css">
+  <style>
+    .illo {
+      background: transparent;
+      width: 300px;
+    }
+
+    .flex {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="flex">
+    <canvas class="illo"></canvas>
+    <canvas class="cube"></canvas>
+  </div>
+  <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+  <script>
+    // Made with Zdog
+
+    // ----- setup ----- //
+
+    var sceneSize = 18;
+    var TAU = Zdog.TAU;
+
+    var illo = new Zdog.Illustration({
+      element: '.illo',
+      rotate: { x: TAU * -35/360, y: TAU * 1/8 },
+      dragRotate: true,
+      resize: 'fullscreen',
+      onResize: function( width, height ) {
+        this.zoom = Math.floor( Math.min( width, height ) / sceneSize );
+      },
+    });
+
+    // ----- model ----- //
+
+    var cube = new Zdog.Anchor({
+      addTo: illo,
+      scale: 4,
+    });
+
+    var oneUnit = new Zdog.Vector({ x: 1, y: 1 });
+
+    var side = new Zdog.Anchor({
+      addTo: cube,
+      translate: { z: 1 },
+    });
+
+    var dot = new Zdog.Shape({
+      addTo: side,
+      translate: oneUnit.copy(),
+      stroke: 1,
+      color: 'black',
+    });
+
+    dot.copy({ translate: { x: -1, y:  1 } });
+    dot.copy({ translate: { x:  1, y: -1 } });
+    dot.copy({ translate: { x: -1, y: -1 } });
+
+    // more dots
+    dot.copy({ translate: { x:  1 } });
+    dot.copy({ translate: { x: -1 } });
+    dot.copy({ translate: { y: -1 } });
+    dot.copy({ translate: { y:  1 } });
+
+    side.copyGraph({
+      translate: { z: -1 },
+    });
+
+    var midDot = dot.copy({
+      addTo: cube,
+    });
+
+    midDot.copy({ translate: { x: -1, y:  1 }} );
+    midDot.copy({ translate: { x:  1, y: -1 }} );
+    midDot.copy({ translate: { x: -1, y: -1 }} );
+
+
+    // ----- animate ----- //
+
+    var keyframes = [
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 0, z: TAU/4 },
+      { x: -TAU/4, y: 0, z: TAU/4 },
+      { x: -TAU/4, y: 0, z: TAU/2 },
+    ];
+
+    var ticker = 0;
+    var cycleCount = 75;
+    var turnLimit = keyframes.length - 1;
+
+    function animate() {
+      var progress = ticker / cycleCount;
+      var tween = Zdog.easeInOut( progress % 1, 4 );
+      var turn = Math.floor( progress % turnLimit );
+      var keyA = keyframes[ turn ];
+      var keyB = keyframes[ turn + 1 ];
+      cube.rotate.x = Zdog.lerp( keyA.x, keyB.x, tween );
+      cube.rotate.y = Zdog.lerp( keyA.y, keyB.y, tween );
+      cube.rotate.z = Zdog.lerp( keyA.z, keyB.z, tween );
+      ticker++;
+
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+
+    animate();
+
+    const { Illustration, Group, Anchor, Rect, Ellipse } = Zdog;
+    const element = document.querySelector('.cube');
+    const illustration = new Illustration({
+      element,
+      dragRotate: true,
+    });
+
+    // anchor point used for the rotation
+    const dice = new Anchor({
+      addTo: illustration,
+    });
+
+    // group describing the faces through rounded rectangles
+    const faces = new Group({
+      addTo: dice,
+    });
+    // due to the considerable stroke, it is possible to fake the dice using four faces only
+    const face = new Rect({
+      addTo: faces,
+      stroke: 50,
+      width: 50,
+      height: 50,
+      color: 'hsl(5, 80%, 55%)',
+      translate: {
+        z: -25,
+      },
+    });
+
+    // rotate the faces around the center
+    face.copy({
+      rotate: {
+        x: TAU / 4,
+      },
+      translate: {
+        y: 25,
+      },
+    });
+
+    face.copy({
+      rotate: {
+        x: TAU / 4,
+      },
+      translate: {
+        y: -25,
+      },
+    });
+
+    face.copy({
+      translate: {
+        z: 25,
+      },
+    });
+
+    // include the dots repeating as many shapes/groups as possible
+    // ! when copying an element be sure to reset the rotation/translation of the copied shape
+    const one = new Ellipse({
+      addTo: dice,
+      diameter: 15,
+      stroke: false,
+      fill: true,
+      color: 'hsl(0, 0%, 100%)',
+      translate: {
+        z: 50,
+      },
+    });
+
+    const two = new Group({
+      addTo: dice,
+      rotate: {
+        x: TAU / 4,
+      },
+      translate: {
+        y: 50,
+      },
+    });
+
+    one.copy({
+      addTo: two,
+      translate: {
+        y: 20,
+      },
+    });
+
+    one.copy({
+      addTo: two,
+      translate: {
+        y: -20,
+      },
+    });
+
+    const three = new Group({
+      addTo: dice,
+      rotate: {
+        y: TAU / 4,
+      },
+      translate: {
+        x: 50,
+      },
+    });
+
+    one.copy({
+      addTo: three,
+      translate: {
+        z: 0,
+      },
+    });
+
+    one.copy({
+      addTo: three,
+      translate: {
+        x: 20,
+        y: -20,
+        z: 0,
+      },
+    });
+
+    one.copy({
+      addTo: three,
+      translate: {
+        x: -20,
+        y: 20,
+        z: 0,
+      },
+    });
+
+    const four = new Group({
+      addTo: dice,
+      rotate: {
+        y: TAU / 4,
+      },
+      translate: {
+        x: -50,
+      },
+    });
+
+    two.copyGraph({
+      addTo: four,
+      rotate: {
+        x: 0,
+      },
+      translate: {
+        x: 20,
+        y: 0,
+      },
+    });
+
+    two.copyGraph({
+      addTo: four,
+      rotate: {
+        x: 0,
+      },
+      translate: {
+        x: -20,
+        y: 0,
+      },
+    });
+
+    const five = new Group({
+      addTo: dice,
+      rotate: {
+        x: TAU / 4,
+      },
+      translate: {
+        y: -50,
+      },
+    });
+
+    four.copyGraph({
+      addTo: five,
+      rotate: {
+        y: 0,
+      },
+      translate: {
+        x: 0,
+      },
+    });
+
+    one.copy({
+      addTo: five,
+      translate: {
+        z: 0,
+      },
+    });
+
+    const six = new Group({
+      addTo: dice,
+      translate: {
+        z: -50,
+      },
+    });
+
+    two.copyGraph({
+      addTo: six,
+      rotate: {
+        x: 0,
+        z: TAU / 4,
+      },
+      translate: {
+        x: 0,
+        y: 0,
+      },
+    });
+
+    four.copyGraph({
+      addTo: six,
+      rotate: {
+        y: 0,
+      },
+      translate: {
+        x: 0,
+      },
+    });
+
+    // animate the dice to endlessly rotate around its center
+    function animate1() {
+      console.log('cube')
+      illustration.updateRenderGraph();
+      dice.rotate.x += 0.01;
+      dice.rotate.y -= 0.01;
+      requestAnimationFrame(animate1);
+    }
+    animate1();
+
+  </script>
+</body>
+</html>
