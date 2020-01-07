@@ -128,15 +128,16 @@ $(function () {
     function checkContinuous(arr) {
         console.log("TCL: checkContinuous -> arr", arr)
         let res = false;
-
-        let temp = arr.reduce((accumulator, cur, ) => {
-            
-        }, [])
+        // let temp = 0;
+        // for(let i = 1; i < arr.length; i++) {
+        //     if (arr[0] / 10)
+        //     temp = i;
+        // }
         return res;
     }
 
     function checkWin(moves, player) {
-        checkContinuous(moves.filter(move => move.player === player))
+        checkContinuous(moves.filter(move => move.player === player).sort((a, b) => a.data - b.data))
         // console.log("TCL: checkWin -> o_moves", o_moves)
     }
 
