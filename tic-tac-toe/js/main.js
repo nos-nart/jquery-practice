@@ -78,6 +78,7 @@ $(function () {
     function rePlay() {
         $ELEMENT.btnReplay.on('click', function () {
             drawGame(getWidth());
+            arrMovement = [];
             !Object.is(isWin, 'x') ? changeMessage(MSSG.Y_TURN) : changeMessage(MSSG.X_TURN)
         });
     }
@@ -95,20 +96,22 @@ $(function () {
             $self.css('background', '#0a9745');
             $self.prop('disabled', true);
             if (x_turn) {
-                changeHTML($self, `<span>⚫️</span>`);
+                changeHTML($self, `<span>✖️</span>`);
                 changeMessage(MSSG.X_TURN);
                 arrMovement.push({
-                    x: $self.data('index')
+                    player: 'x',
+                    data: $self.data('index')
                 });
             } else {
-                changeHTML($self, `<span>✖️</span>`);
+                changeHTML($self, `<span>⚫️</span>`);
                 changeMessage(MSSG.O_TURN);
                 arrMovement.push({
-                    y: $self.data('index')
+                    player: 'o',
+                    data: $self.data('index')
                 });
             }
             $that = $(this);
-            checkWin(arrMovement);
+            checkWin(arrMovement, x_turn ? 'x' : 'o');
         });
     }
 
@@ -122,10 +125,19 @@ $(function () {
         $ELEMENT.gamePlay.append($html);
     }
 
-    function checkWin(moves) {
-        let x_moves = moves.filter(m => !m.x);
-        let y_moves = moves.filter(m => !m.y);
-        console.log("TCL: checkWin -> y_moves", y_moves)
+    function checkContinuous(arr) {
+        console.log("TCL: checkContinuous -> arr", arr)
+        let res = false;
+
+        let temp = arr.reduce((accumulator, cur, ) => {
+            
+        }, [])
+        return res;
+    }
+
+    function checkWin(moves, player) {
+        checkContinuous(moves.filter(move => move.player === player))
+        // console.log("TCL: checkWin -> o_moves", o_moves)
     }
 
     runGame();
