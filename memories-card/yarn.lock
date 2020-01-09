@@ -5249,6 +5249,18 @@ symbol-tree@^3.2.2:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
+tailwindcss-grid@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss-grid/-/tailwindcss-grid-1.2.1.tgz#44d6310f754078b1a49fa30d0a4dfd69d09a4413"
+  integrity sha512-H/IjlRgREBUbBz3hlC+inGX45S8qx3T6pIY3aa2MJuy85tiSUk5BsdJDmkoCNA3HWfIyL1+NFJSgKyv+ADOJFw==
+
+tailwindcss-transforms@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-transforms/-/tailwindcss-transforms-2.2.0.tgz#3e0e594a2b34a056714d5fe539e2ace3226edf28"
+  integrity sha512-0HPzE1QgGi94lNOgsIKA0AWaQern+JR0XNJkRmpyjFybpSLtQ5HkupF/caAmUW+pTt4cguDzd5gw09uw1oaG3A==
+  dependencies:
+    lodash "^4.17.11"
+
 tailwindcss-transitions@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tailwindcss-transitions/-/tailwindcss-transitions-2.1.0.tgz#54ca6c293a197300c5eb1ab3775dc29f083432f1"
@@ -5423,6 +5435,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+u@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/u/-/u-0.1.0.tgz#f5cc15d0063241e2c95004990fc4dd989bf1fcb3"
+  integrity sha1-9cwV0AYyQeLJUASZD8TdmJvx/LM=
+
 uncss@^0.17.2:
   version "0.17.2"
   resolved "https://registry.yarnpkg.com/uncss/-/uncss-0.17.2.tgz#fac1c2429be72108e8a47437c647d58cf9ea66f1"
@@ -5437,6 +5454,11 @@ uncss@^0.17.2:
     postcss "^7.0.17"
     postcss-selector-parser "6.0.2"
     request "^2.88.0"
+
+underscore@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.2.tgz#0c8d6f536d6f378a5af264a72f7bec50feb7cf2f"
+  integrity sha512-D39qtimx0c1fI3ya1Lnhk3E9nONswSKhnffBI0gME9C99fYOkNi04xs8K6pePLhvl1frbDemkaBQ5ikWllR2HQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
