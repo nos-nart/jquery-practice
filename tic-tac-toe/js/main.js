@@ -21,7 +21,7 @@ $(function () {
     let move,
         arrMovement,
         isStart = false,
-        isWin = 'x',
+        isWin = false,
         width
 
     function changeMessage(mssg) {
@@ -78,6 +78,8 @@ $(function () {
     function rePlay() {
         $ELEMENT.btnReplay.on('click', function () {
             drawGame(getWidth());
+            isWin = false;
+            arrMovement = [];
             !Object.is(isWin, 'x') ? changeMessage(MSSG.Y_TURN) : changeMessage(MSSG.X_TURN)
         });
     }
@@ -87,28 +89,18 @@ $(function () {
     }
 
     function playGame() {
-        let $that = null;
+        let $that = null, move = null;
         $(document).on('click', '.cell', function () {
             if ($that) $that.css('background', '#fff');
             x_turn = !x_turn;
             let $self = $(this);
-            $self.css('background', '#0a9745');
-            $self.prop('disabled', true);
-            if (x_turn) {
-                changeHTML($self, `<span>⚫️</span>`);
-                changeMessage(MSSG.X_TURN);
-                arrMovement.push({
-                    x: $self.data('index')
-                });
-            } else {
-                changeHTML($self, `<span>✖️</span>`);
-                changeMessage(MSSG.O_TURN);
-                arrMovement.push({
-                    y: $self.data('index')
-                });
-            }
+            $self.css('background', '#0a9745').prop('disabled', true);
+            changeHTML($self, x_turn ? `<span>✖️</span>` : `<span>⚫️</span>`);
+            changeMessage(!x_turn ? MSSG.X_TURN : MSSG.O_TURN);
+            move = {player: x_turn ? 'x' : 'o', data: $self.data('index')}
+            arrMovement.push(move);
             $that = $(this);
-            checkWin(arrMovement);
+            checkWin(arrMovement, x_turn ? 'x' : 'o', move);
         });
     }
 
@@ -122,10 +114,33 @@ $(function () {
         $ELEMENT.gamePlay.append($html);
     }
 
-    function checkWin(moves) {
-        let x_moves = moves.filter(m => !m.x);
-        let y_moves = moves.filter(m => !m.y);
-        console.log("TCL: checkWin -> y_moves", y_moves)
+    function checkContinuous(arr) {
+        let count = 0;
+        let prev = arr[0];
+        for(let i = 1; i < arr.length; i++) {
+            if ((arr[i].data  - prev.data) === 1) count++;
+            console.log("TCL: checkContinuous -> count", count)
+            prev = arr[i];
+        }
+        return Object.is(count, 4);
+    }
+
+    function checkHorizontal(arr) {
+        return arr.length > 4 && checkContinuous(arr.sort((prev, cur) => prev.data - cur.data).slice(0, 5));
+    }
+
+    function checkVertical(arr) {
+        return arr.length > 4 && checkContinuous(arr.sort((prev, cur) => prev.data - cur.data).slice(0, 5));
+    }
+
+    function checkWin(moves, player, move) {
+        let res = false;
+        let currentPlayerMoves = moves.filter(m => m.player === player);
+
+        checkHorizontal(currentPlayerMoves.filter(m => ~~(m.data / 10) === ~~(move.data / 10)));
+        checkVertical(currentPlayerMoves.filter(m => (m.data % 10) === (move.data % 10)));
+
+        return res;
     }
 
     runGame();
