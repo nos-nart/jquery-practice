@@ -1,21 +1,30 @@
 .card {
+  perspective: 1400px;
+
+  .card-inner {
     position: relative;
     transform-style: preserve-3d;
-}
+    transition: all 0.5s;
 
-.front, 
-.back {
-    display: flex;
-    border-radius: 5px;
-    padding: 3px;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-}
+    .front,
+    .back {
+      display: flex;
+      border-radius: 5px;
+      padding: 3px;
+      justify-content: center;
+      align-items: center;
+      backface-visibility: hidden;
+    }
 
-.back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotateY(180deg);
+    .back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotateY(180deg);
+    }
+
+    // &:hover {
+    //   transform: rotateY(180deg)
+    // }
+  }
 }

@@ -23,7 +23,6 @@
     "tailwindcss-grid": "^1.2.1",
     "tailwindcss-transforms": "^2.2.0",
     "tailwindcss-transitions": "^2.1.0",
-    "u": "^0.1.0",
     "underscore": "^1.9.2"
   },
   "devDependencies": {

@@ -3,63 +3,94 @@ import './styles/style.scss';
 import jquery from 'jquery';
 import storage from 'local-storage-fallback';
 import _ from 'underscore';
-import anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 window.$ = window.jquery = jquery
 
 $(function () {
     const $ELEMENT = {
-        gameBoard: $('.game-board')
+        gameBoard: $('.game-board'),
+        card: $('.card')
     }
-    const CARD_BACK = './images/back.jpg';
     const datas = [
-        {url: './images/anivia.png'},
-        {url: './images/ashe.png'},
-        {url: './images/braum.png'},
-        {url: './images/darius.png'},
-        {url: './images/draven.png'},
-        {url: './images/ezreal.png'},
-        {url: './images/fiora.png'},
-        {url: './images/garen.png'},
-        {url: './images/hecarim.png'},
-        {url: './images/heimerdinger.png'},
-        {url: './images/jinx.png'},
-        {url: './images/kalista.png'},
-        {url: './images/karma.png'},
-        {url: './images/katarina.png'},
-        {url: './images/lucian.png'},
-        {url: './images/lux.png'},
-        {url: './images/mighty-poro.png'},
-        {url: './images/poro.png'},
-        {url: './images/shen.png'},
-        {url: './images/teemo.png'},
-        {url: './images/thresh.png'},
-        {url: './images/zed.png'},
-        {url: './images/trymdamere.png'},
-        {url: './images/vladimir.png'},
-        {url: './images/yasuo.png'}
+        {id: 1, url: './anivia.png'},
+        {id: 2, url: './ashe.png'},
+        {id: 3, url: './braum.png'},
+        {id: 4, url: './darius.png'},
+        {id: 5, url: './draven.png'},
+        {id: 6, url: './ezreal.png'},
+        {id: 7, url: './fiora.png'},
+        {id: 8, url: './garen.png'},
+        {id: 9, url: './hecarim.png'},
+        {id: 10, url: './heimerdinger.png'},
+        {id: 11, url: './jinx.png'},
+        {id: 12, url: './kalista.png'},
+        {id: 13, url: './karma.png'},
+        {id: 14, url: './katarina.png'},
+        {id: 15, url: './lucian.png'},
+        {id: 16, url: './lux.png'},
+        {id: 17, url: './mighty-poro.png'},
+        {id: 18, url: './poro.png'},
+        {id: 19, url: './shen.png'},
+        {id: 20, url: './teemo.png'},
+        {id: 21, url: './thresh.png'},
+        {id: 22, url: './zed.png'},
+        {id: 23, url: './trymdamere.png'},
+        {id: 24, url: './vladimir.png'},
+        {id: 25, url: './yasuo.png'}
     ]
 
-    function shuffle(arr) {
-        console.log("TCL: shuffle -> arr", arr)
-        return _.shuffle(arr)
-    }
-
     function initial() {
-        let temp = shuffle(datas).slice(0, 16);
-        let initArr = shuffle(temp.push(...temp));
-        console.log("TCL: initial -> initArr", initArr)
+        let temp = _.shuffle(datas, 'id').slice(0, 15);
+        drawBoard(_.shuffle([...temp, ...temp]));
     }
 
-    function drawCard(img, data) {
-        let $ele = $('<div class="card" data-index="' + data + '">' +
-            '<div class="front"><div>'+ '<img src="' + img + '"alt="front"/></div></div>' +
-            '<div class="back"><img src="' + CARD_BACK + '"/></div>'
-        +'</div>')
+    function drawCard(img, id) {
+        let $ele = '<div class="card" data-index="' + id + '">'+
+            '<div class="card-inner">'+
+                '<div class="front">'+
+                    '<img src="./back.jpg"/>' +
+                '</div>' +
+                '<div class="back">' +
+                    '<img src="'+ img + '" alt="front"/>'+
+            '</div></div></div>';
         return $ele;
+    }
+
+    function drawBoard(cards) {
+        let $html = '';
+        $.each(cards, function(_, card) {
+            $html += drawCard(card.url, card.id);
+        })
+        $ELEMENT.gameBoard.append($html);
+    }
+
+
+
+    let playing = false;
+    function flipCard() {
+        $(document).on('click', '.card-inner', function() {
+            if (playing) return;
+            playing = true;
+            anime({
+                targets: $('.card-inner'),
+                scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+                rotateY: {value: '+=180', delay: 200},
+                easing: 'easeInOutSine',
+                duration: 200,
+                complete: function(){
+                    playing = false;
+                }
+            })
+        })
+    }
+
+    function checkWin() {
+
     }
 
     function runGame() {
         initial();
+        flipCard();
     }
 
     runGame();

@@ -5435,11 +5435,6 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-u@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/u/-/u-0.1.0.tgz#f5cc15d0063241e2c95004990fc4dd989bf1fcb3"
-  integrity sha1-9cwV0AYyQeLJUASZD8TdmJvx/LM=
-
 uncss@^0.17.2:
   version "0.17.2"
   resolved "https://registry.yarnpkg.com/uncss/-/uncss-0.17.2.tgz#fac1c2429be72108e8a47437c647d58cf9ea66f1"
