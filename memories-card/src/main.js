@@ -64,23 +64,23 @@ $(function () {
         $ELEMENT.gameBoard.append($html);
     }
 
-
-
-    let playing = false;
+    // let playing = false;
     function flipCard() {
-        $(document).on('click', '.card-inner', function() {
-            if (playing) return;
-            playing = true;
-            anime({
-                targets: $('.card-inner'),
-                scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
-                rotateY: {value: '+=180', delay: 200},
-                easing: 'easeInOutSine',
-                duration: 200,
-                complete: function(){
-                    playing = false;
-                }
-            })
+        $(document).on('click', '.card', function() {
+            console.log($(this))
+            $(this).find('.card-inner').css('transform', 'rotateY(180deg)')
+            // if (playing) return;
+            // playing = true;
+            // anime({
+            //     targets: $('.card-inner'),
+            //     scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+            //     rotateY: {value: '+=180', delay: 200},
+            //     easing: 'easeInOutSine',
+            //     duration: 200,
+            //     // complete: function(){
+            //     //     playing = false;
+            //     // }
+            // })
         })
     }
 
