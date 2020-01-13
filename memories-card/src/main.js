@@ -41,7 +41,8 @@ $(function () {
 
     function initial() {
         let temp = _.shuffle(datas, 'id').slice(0, 15);
-        drawBoard(_.shuffle([...temp, ...temp]));
+        console.log(_.shuffle([...temp, ..._.map(temp, function(i) { return {id: i.id * 2, url: i.url}})]))
+        drawBoard(_.shuffle([...temp, ..._.map(temp, function(i) { return {id: i.id * 2, url: i.url}})]));
     }
 
     function drawCard(img, id) {
@@ -64,23 +65,45 @@ $(function () {
         $ELEMENT.gameBoard.append($html);
     }
 
-
-
-    let playing = false;
     function flipCard() {
-        $(document).on('click', '.card-inner', function() {
-            if (playing) return;
-            playing = true;
-            anime({
-                targets: $('.card-inner'),
-                scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
-                rotateY: {value: '+=180', delay: 200},
-                easing: 'easeInOutSine',
-                duration: 200,
-                complete: function(){
-                    playing = false;
+        let prev = -1;
+        let $temp = null;
+        $(document).on('click', '.card', function() {
+            console.log('prev: ' + prev)
+            // console.log("TCL: flipCard -> $(this).dataset", $(this)[0].dataset.index)
+            if (prev > 0) {
+                console.log('comparing')
+                if (prev === $(this)[0].dataset.index) {
+                    console.log('found')
+                    prev = -1;
+                    $temp.find('.card-inner').toggleClass('flip');
+                    $(this).find('.card-inner').toggleClass('flip');
+                } else {
+                    console.log('not found')
+                    console.log('temp not found: ' + $temp)
+                    setTimeout(() => {
+                        $(this).find('.card-inner').toggleClass('flip');
+                        $temp.find('.card-inner').toggleClass('flip');
+                    }, 500)
+                    prev = -1;
                 }
-            })
+            } else {
+                console.log('new turn')
+                prev = $(this)[0].dataset.index;
+                $(this).find('.card-inner').toggleClass('flip');
+                $temp = $(this);
+            }
+
+            // anime({
+            //     targets: target,
+            //     scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+            //     rotateY: {value: '+=180', delay: 200},
+            //     easing: 'easeInOutSine',
+            //     duration: 200,
+            //     // complete: function(){
+            //     //     playing = false;
+            //     // }
+            // })
         })
     }
 
