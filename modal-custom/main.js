@@ -1,4 +1,5 @@
 $(function() {
+    // https://dev.to/tylermcginnis/a-beginners-guide-to-javascripts-prototype-5kk
     (function() {
         this.Modal = function() {
             this.closeButton = null;
