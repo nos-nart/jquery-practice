@@ -1,0 +1,28 @@
+{
+  "name": "svg-loop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx parcel src/index.html --no-cache -p 6789",
+    "prod": "npx parcel build src/index.html --public-url ./ --no-cache"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "cssnano": "^4.1.10",
+    "jquery": "^3.5.1",
+    "parcel-bundler": "^1.12.4",
+    "postcss": "^7.0.29",
+    "sass": "^1.26.5",
+    "tailwindcss": "^1.4.4",
+    "tailwindcss-transitions": "^2.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "stylelint-config-recommended": "^3.0.0"
+  }
+}

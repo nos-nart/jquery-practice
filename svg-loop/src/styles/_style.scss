@@ -1,0 +1,78 @@
+@import "./_font";
+@import "./_global";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.linear-text {
+  background: linear-gradient(53.13deg, #ffd33d 0, #fb8532 19.02%, #ea4a5a 37.19%, #8a63d2 56.92%, #2188ff 79.93%, #34d058 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.name path[id^="letter-"] {
+  animation: .7s ease 0s loop-around infinite
+}
+
+.name path[id^="letter-"]:nth-child(1) {
+  animation-delay: .0636363636s
+}
+
+.name path[id^="letter-"]:nth-child(2) {
+  animation-delay: .1272727273s
+}
+
+.name path[id^="letter-"]:nth-child(3) {
+  animation-delay: .1909090909s
+}
+
+.name path[id^="letter-"]:nth-child(4) {
+  animation-delay: .2545454545s
+}
+
+.name path[id^="letter-"]:nth-child(5) {
+  animation-delay: .3181818182s
+}
+
+.name path[id^="letter-"]:nth-child(6) {
+  animation-delay: .3818181818s
+}
+
+.name path[id^="letter-"]:nth-child(7) {
+  animation-delay: .4454545455s
+}
+
+.name path[id^="letter-"]:nth-child(8) {
+  animation-delay: .5090909091s
+}
+
+.name path[id^="letter-"]:nth-child(9) {
+  animation-delay: .5727272727s
+}
+
+.name path[id^="letter-"]:nth-child(10) {
+  animation-delay: .6363636364s
+}
+
+.name path[id^="letter-"]:nth-child(11) {
+  animation-delay: .7s
+}
+
+.name path[id^="letter-"]:nth-child(12) {
+  animation-delay: .7636363636s
+}
+
+@keyframes loop-around {
+  0% {
+    fill: #75b5aa
+  }
+
+  25% {
+    fill: #56a194
+  }
+
+  50% {
+    fill: #268bd2
+  }
+}
