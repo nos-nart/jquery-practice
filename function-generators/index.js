@@ -67,3 +67,26 @@ const bookClubs = [
         ]
     },
 ]
+
+function* iterateBooks(books) {
+    for(let i = 0; i < books.length; i++) {
+        yield books[i];
+    }
+}
+
+function* iterateMembers(members) {
+    for (let i = 0; i < members.length; i++) {
+        const clubMember = members[i];
+        yield* iterateBooks(clubMember.books);
+    }
+}
+
+function* iterateBookClubs(bookClubs) {
+    for (let i = 0; i < bookClubs.length; i++) {
+        const bookClub = bookClubs[i];
+        yield* iterateMembers(bookClub.clubMembers);
+    }
+}
+
+const it = iterateBookClubs(bookClubs);
+it.next();
